@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from web.models import Value
 
 router = APIRouter()
 
@@ -9,3 +10,4 @@ def get_data():
 @router.post("/data/upload")
 def upload_data():
     ...
+
