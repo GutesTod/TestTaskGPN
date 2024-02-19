@@ -6,12 +6,14 @@ services:
     command: uvicorn main:app --host 127.0.0.0
     volumes:
       - .:.
+    environment:
+      - DATABASE_URL=postgresql+psycopg://test:test@localhost/testtaskgpn
     ports:
       - 8008:8000
 
   db:
     image: postgres:16-alpine
-      volumes:
+    volumes:
       - postgres_data:/var/lib/postgresql/data/
     expose:
       - 5432
@@ -19,3 +21,6 @@ services:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
       - POSTGRES_DB=testtaskgpn
+
+volumes:
+  postgres_data:

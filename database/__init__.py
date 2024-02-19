@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 engine = create_engine(
-    "postgresql+psycopg:///example.db"
+    os.getenv("DATABASE_URL")
 )
 
 engine.connect()
