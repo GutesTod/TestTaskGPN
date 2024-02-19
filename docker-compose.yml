@@ -1,15 +1,18 @@
+
 version: '3.8'
 
 services:
   web:
-    build: .
-    command: uvicorn main:app --host 127.0.0.0
-    volumes:
-      - .:.
+    build:
+      dockerfile: Dockerfile
     environment:
-      - DATABASE_URL=postgresql+psycopg://test:test@localhost/testtaskgpn
+      - DATABASE_URL=postgresql+psycopg://test:test@db:5432/testtaskgpn
     ports:
-      - 8008:8000
+      - 8000:8000
+    depends_on:
+      - db
+    networks:
+      - default
 
   db:
     image: postgres:16-alpine
@@ -21,6 +24,16 @@ services:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
       - POSTGRES_DB=testtaskgpn
+    ports:
+      - 5432:5432
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+
+
 
 volumes:
   postgres_data:
