@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "testtaskgpn"
-version = "0.3.0"
+version = "0.7.0"
 description = ""
 authors = ["Gutes Tod <jefflol003@gmail.com>"]
 readme = "README.md"
@@ -10,7 +10,9 @@ python = "^3.11"
 fastapi = "^0.109.2"
 sqlalchemy = "^2.0.27"
 python-dotenv = "^1.0.1"
-psycopg2-binary = "^2.9.9"
+uvicorn = "^0.27.1"
+gunicorn = "^21.2.0"
+psycopg = {extras = ["binary"], version = "^3.1.18"}
 
 
 [tool.poetry.group.test.dependencies]
